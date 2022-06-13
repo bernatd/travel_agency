@@ -1,0 +1,1 @@
+org.springframework.data.jdbc.repository.config.DialectResolver$JdbcDialectProvider=pl.bernatd.travel_agency.service.MariaDbDialectResolver
