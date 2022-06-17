@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import pl.bernatd.travel_agency.domain.Offer;
 
 @ControllerAdvice
 public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
@@ -22,5 +21,15 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(OfferNotFoundException.class)
     public ResponseEntity<Object> handleOfferNotFoundException(OfferNotFoundException exception) {
         return new ResponseEntity<>("Offer with given id does not exist", HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(HotelNotFoundException.class)
+    public ResponseEntity<Object> handleHotelNotFoundException(HotelNotFoundException exception) {
+        return new ResponseEntity<>("Hotel with given id does not exist", HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FlightNotFoundException.class)
+    public ResponseEntity<Object> handleFlightNotFoundException(FlightNotFoundException exception) {
+        return new ResponseEntity<>("Flight with given id does not exist", HttpStatus.BAD_REQUEST);
     }
 }

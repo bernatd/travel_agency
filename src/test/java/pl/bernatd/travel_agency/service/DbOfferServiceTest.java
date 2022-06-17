@@ -65,5 +65,6 @@ public class DbOfferServiceTest {
         //Then
         assertThat(result).isNotNull();
         assertEquals(1L, result.getId());
+        assertEquals(2543.0, result.getPrice());
     }
 }
