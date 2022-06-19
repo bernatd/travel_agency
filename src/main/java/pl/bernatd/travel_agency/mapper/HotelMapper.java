@@ -13,23 +13,28 @@ public class HotelMapper {
         return new Hotel(hotelDto.getId(),
                 hotelDto.getCity(),
                 hotelDto.getCountry(),
-                hotelDto.getStandard());
+                hotelDto.getStandard(),
+                hotelDto.getPrice());
     }
 
     public HotelDto mapToHotelDto(final Hotel hotel) {
         return new HotelDto(hotel.getId(),
+                hotel.getOffer().getId(),
                 hotel.getCity(),
                 hotel.getCountry(),
-                hotel.getStandard());
+                hotel.getStandard(),
+                hotel.getPrice());
     }
 
     public List<HotelDto> mapToHotelDtoList (List<Hotel> hotels) {
         List<HotelDto> hotelDtos = new ArrayList<>();
         for (Hotel hotel : hotels) {
             hotelDtos.add(new HotelDto(hotel.getId(),
+                    hotel.getOffer().getId(),
                     hotel.getCity(),
                     hotel.getCountry(),
-                    hotel.getStandard()));
+                    hotel.getStandard(),
+                    hotel.getPrice()));
         }
         return hotelDtos;
     }

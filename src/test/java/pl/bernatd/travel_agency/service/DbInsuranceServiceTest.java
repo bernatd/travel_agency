@@ -9,6 +9,7 @@ import pl.bernatd.travel_agency.domain.Insurance;
 import pl.bernatd.travel_agency.exceptions.InsuranceNotFoundException;
 import pl.bernatd.travel_agency.repository.InsuranceRepository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
@@ -41,8 +42,8 @@ public class DbInsuranceServiceTest {
     @Test
     void testSaveInsurance() {
         //Given
-        Insurance insurance = new Insurance(1L, "type", "description");
-        Insurance savedInsurance = new Insurance(1L, "type", "description");
+        Insurance insurance = new Insurance(1L, "type", "description", new BigDecimal(55));
+        Insurance savedInsurance = new Insurance(1L, "type", "description", new BigDecimal(55));
         when(repository.save(insurance)).thenReturn(savedInsurance);
         //When
         Insurance result = service.saveInsurance(insurance);
@@ -56,7 +57,7 @@ public class DbInsuranceServiceTest {
     @Test
     void testGetInsurance() throws InsuranceNotFoundException {
         //Given
-        Insurance insurance = new Insurance(1L, "type", "description");
+        Insurance insurance = new Insurance(1L, "type", "description", new BigDecimal(55));
         when(repository.findById(1L)).thenReturn(Optional.of(insurance));
         //When
         Insurance result = service.getInsurance(1L);

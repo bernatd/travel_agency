@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -17,8 +18,20 @@ import java.time.LocalDate;
 @Setter
 public class Offer {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "FLIGHT_ID")
+    private Flight flight;
+
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "HOTEL_ID")
+    private Hotel hotel;
+
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "INSURANCE_ID")
+    private Insurance insurance;
 
     @NotNull
     @Column(name = "PLACE")
@@ -28,7 +41,7 @@ public class Offer {
     private String description;
 
     @Column(name = "PRICE")
-    private double price;
+    private BigDecimal price;
 
     @Column(name = "START_DATE")
     private LocalDate start_date;

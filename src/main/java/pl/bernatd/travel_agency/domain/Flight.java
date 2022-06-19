@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "FLIGHTS")
@@ -18,6 +19,9 @@ public class Flight {
     @GeneratedValue
     private Long id;
 
+    @OneToOne(mappedBy = "flight")
+    private Offer offer;
+
     @Column(name = "CODE")
     private String code;
 
@@ -27,9 +31,23 @@ public class Flight {
     @Column(name = "ORIGIN")
     private String origin;
 
-    @Column(name = "destination")
+    @Column(name = "DESTINATION")
     private String destination;
 
     @Column(name = "CATEGORY")
     private String category;
+
+    @Column(name = "PRICE")
+    private BigDecimal price;
+
+    public Flight(Long id, String code, String airline, String origin, String destination, String category,
+                  BigDecimal price) {
+        this.id = id;
+        this.code = code;
+        this.airline = airline;
+        this.origin = origin;
+        this.destination = destination;
+        this.category = category;
+        this.price = price;
+    }
 }

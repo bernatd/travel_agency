@@ -12,21 +12,26 @@ public class InsuranceMapper {
     public Insurance mapToInsurance(final InsuranceDto insuranceDto) {
         return new Insurance(insuranceDto.getId(),
                 insuranceDto.getType(),
-                insuranceDto.getDescription());
+                insuranceDto.getDescription(),
+                insuranceDto.getPrice());
     }
 
     public InsuranceDto mapToInsuranceDto(final Insurance insurance) {
         return new InsuranceDto(insurance.getId(),
+                insurance.getOffer().getId(),
                 insurance.getType(),
-                insurance.getDescription());
+                insurance.getDescription(),
+                insurance.getPrice());
     }
 
     public List<InsuranceDto> mapToInsuranceDtoList(final List<Insurance> insuranceList) {
         List<InsuranceDto> insuranceDtoList = new ArrayList<>();
         for (Insurance insurance : insuranceList) {
             insuranceDtoList.add(new InsuranceDto(insurance.getId(),
+                    insurance.getOffer().getId(),
                     insurance.getType(),
-                    insurance.getDescription()));
+                    insurance.getDescription(),
+                    insurance.getPrice()));
         }
         return insuranceDtoList;
     }
