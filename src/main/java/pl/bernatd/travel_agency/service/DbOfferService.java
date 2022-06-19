@@ -6,12 +6,15 @@ import pl.bernatd.travel_agency.domain.Offer;
 import pl.bernatd.travel_agency.exceptions.OfferNotFoundException;
 import pl.bernatd.travel_agency.repository.OfferRepository;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class DbOfferService {
     private OfferRepository repository;
+    private DbHotelService hotelService;
 
     public List<Offer> getAllOffers() {
         return repository.findAll();
@@ -27,5 +30,12 @@ public class DbOfferService {
 
     public void deleteOffer(final Long id) {
         repository.deleteById(id);
+    }
+
+    public BigDecimal getOfferPrice(final Long id) {
+        Optional<Offer> offer = repository.findById(id);
+        BigDecimal result = offer.get().getHotel().getPrice().add(offer.get().getFlight().getPrice() )
+                .add(offer.get().getInsurance().getPrice());
+        return result;
     }
 }

@@ -40,9 +40,9 @@ public class DbOfferServiceTest {
     @Test
     void testSaveOffer() {
         //Given
-        Offer offer = new Offer(1L, "place", "description", 2543.0,
+        Offer offer = new Offer(1L, "place", "description",
                 LocalDate.parse("2022-06-14"), LocalDate.parse("2022-08-07"));
-        Offer savedOffer = new Offer(1L, "place", "description", 2543.0,
+        Offer savedOffer = new Offer(1L, "place", "description",
                 LocalDate.parse("2022-06-14"), LocalDate.parse("2022-08-07"));
         when(repository.save(offer)).thenReturn(savedOffer);
         //when
@@ -57,7 +57,7 @@ public class DbOfferServiceTest {
     @Test
     void testGetOffer() throws OfferNotFoundException {
         //Given
-        Offer offer = new Offer(1L, "place", "description", 2543.0,
+        Offer offer = new Offer(1L, "place", "description",
                 LocalDate.parse("2022-06-14"), LocalDate.parse("2022-08-07"));
         when(repository.findById(1L)).thenReturn(Optional.of(offer));
         //When
@@ -65,6 +65,6 @@ public class DbOfferServiceTest {
         //Then
         assertThat(result).isNotNull();
         assertEquals(1L, result.getId());
-        assertEquals(2543.0, result.getPrice());
+        assertEquals("place", result.getPlace());
     }
 }
