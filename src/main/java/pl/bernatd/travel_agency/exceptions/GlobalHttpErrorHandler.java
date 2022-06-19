@@ -32,4 +32,9 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleFlightNotFoundException(FlightNotFoundException exception) {
         return new ResponseEntity<>("Flight with given id does not exist", HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(ReservationNotFoundException.class)
+    public ResponseEntity<Object> handleReservationNotFoundException(ReservationNotFoundException exception) {
+        return new ResponseEntity<>("Reservation with given id does not exist", HttpStatus.BAD_REQUEST);
+    }
 }

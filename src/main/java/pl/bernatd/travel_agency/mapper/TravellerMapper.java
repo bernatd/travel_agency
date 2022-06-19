@@ -6,6 +6,7 @@ import pl.bernatd.travel_agency.dto.TravellerDto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TravellerMapper {
@@ -21,6 +22,7 @@ public class TravellerMapper {
 
     public TravellerDto mapToTravellerDto(final Traveller traveller) {
         return new TravellerDto(traveller.getId(),
+                traveller.getReservation().getId(),
                 traveller.getFirstName(),
                 traveller.getLastName(),
                 traveller.getAddress(),
@@ -29,17 +31,22 @@ public class TravellerMapper {
     }
 
     public List<TravellerDto> mapToTravellerDtoList(final List<Traveller> travellers) {
-        List<TravellerDto> travellerDtoList = new ArrayList<>();
-        for (Traveller traveller : travellers) {
-            travellerDtoList.add(new TravellerDto(
-                    traveller.getId(),
-                    traveller.getFirstName(),
-                    traveller.getLastName(),
-                    traveller.getAddress(),
-                    traveller.getPhone_number(),
-                    traveller.getEmail()
-            ));
+        if (travellers.isEmpty()) {
+            return new ArrayList<>();
+        } else {
+            return travellers.stream()
+                    .map(this::mapToTravellerDto)
+                    .collect(Collectors.toList());
         }
-        return travellerDtoList;
+    }
+
+    public List<Traveller> mapToTravellerList(final List<TravellerDto> travellerDtoList) {
+        if (travellerDtoList.isEmpty()) {
+            return new ArrayList<>();
+        } else {
+            return travellerDtoList.stream()
+                    .map(this::mapToTraveller)
+                    .collect(Collectors.toList());
+        }
     }
 }

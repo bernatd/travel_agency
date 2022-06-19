@@ -1,6 +1,7 @@
 package pl.bernatd.travel_agency.domain;
 
 import lombok.*;
+import org.apache.coyote.http11.filters.SavedRequestInputFilter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,8 +14,12 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class Traveller {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "RESERVATION_ID")
+    private Reservation reservation;
 
     @NotNull
     @Column(name = "FIRST_NAME")
@@ -33,4 +38,13 @@ public class Traveller {
 
     @Column(name = "EMAIL")
     private String email;
+
+    public Traveller(Long id, String firstName, String lastName, String address, String phone_number, String email) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phone_number = phone_number;
+        this.email = email;
+    }
 }

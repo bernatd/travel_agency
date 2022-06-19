@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @Setter
 public class Insurance {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne(mappedBy = "insurance")

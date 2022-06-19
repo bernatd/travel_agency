@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TravellerDto {
     private Long id;
+    private Long reservation_id;
     private String first_name;
     private String last_name;
     private String address;
