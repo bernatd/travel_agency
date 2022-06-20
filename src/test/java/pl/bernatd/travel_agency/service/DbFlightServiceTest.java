@@ -6,12 +6,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.bernatd.travel_agency.domain.Flight;
-import pl.bernatd.travel_agency.domain.Offer;
 import pl.bernatd.travel_agency.exceptions.FlightNotFoundException;
 import pl.bernatd.travel_agency.repository.FlightRepository;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,5 +67,4 @@ public class DbFlightServiceTest {
         assertEquals(1L, result.getId());
         assertEquals("Warsaw", result.getDestination());
     }
-
 }
