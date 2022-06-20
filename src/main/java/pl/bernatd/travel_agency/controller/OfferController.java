@@ -50,4 +50,19 @@ public class OfferController {
         service.deleteOffer(id);
         return ResponseEntity.ok().build();
     }
+
+    @PutMapping(value = "{id}/hotel/{standard}")
+    public  ResponseEntity<OfferDto> changeRoomStandard(final Long id, final String standard) throws OfferNotFoundException {
+        return ResponseEntity.ok(mapper.mapToOfferDto(service.changeRoomStandard(id, standard)));
+    }
+
+    @PutMapping(value = "{id}/flight/{category}")
+    public ResponseEntity<OfferDto> changeFlightCategory(final Long id, final String category) throws OfferNotFoundException {
+        return ResponseEntity.ok(mapper.mapToOfferDto(service.changeFlightCategory(id, category)));
+    }
+
+    @PutMapping(value = "{id}/insurance/{type}")
+    public ResponseEntity<OfferDto> changeInsuranceType(final Long id, final String type) throws OfferNotFoundException {
+        return ResponseEntity.ok(mapper.mapToOfferDto(service.changeInsuranceType(id, type)));
+    }
 }

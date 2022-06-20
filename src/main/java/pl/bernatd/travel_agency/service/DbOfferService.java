@@ -41,4 +41,22 @@ public class DbOfferService {
                 .add(offer.get().getInsurance().getPrice());
         return result;
     }
+
+    public Offer changeRoomStandard(final Long id, final String standard) throws OfferNotFoundException {
+        Offer offer = repository.findById(id).orElseThrow(OfferNotFoundException::new);
+        offer.getHotel().setStandard(standard);
+        return repository.save(offer);
+    }
+
+    public Offer changeFlightCategory(final Long id, final String category) throws OfferNotFoundException {
+        Offer offer = repository.findById(id).orElseThrow(OfferNotFoundException::new);
+        offer.getFlight().setCategory(category);
+        return repository.save(offer);
+    }
+
+    public Offer changeInsuranceType(final Long id, final String type) throws OfferNotFoundException {
+        Offer offer = repository.findById(id).orElseThrow(OfferNotFoundException::new);
+        offer.getInsurance().setType(type);
+        return repository.save(offer);
+    }
 }
