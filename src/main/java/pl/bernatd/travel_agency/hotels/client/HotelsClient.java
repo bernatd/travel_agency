@@ -40,8 +40,7 @@ public class HotelsClient {
                 .toUri();
 
         try {
-            ResponseEntity<HotelsApiDto[]> hotelsResponse = restTemplate.exchange(url, HttpMethod.GET, request, HotelsApiDto[].class);
-            System.out.println("Should get hotels response");
+            ResponseEntity<HotelsApiDto> hotelsResponse = restTemplate.exchange(url, HttpMethod.GET, request, HotelsApiDto.class);
             return Optional.ofNullable(hotelsResponse.getBody())
                     .map(Arrays::asList)
                     .orElse(Collections.emptyList())
