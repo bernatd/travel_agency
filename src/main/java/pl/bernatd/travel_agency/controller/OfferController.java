@@ -1,5 +1,6 @@
 package pl.bernatd.travel_agency.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +12,10 @@ import pl.bernatd.travel_agency.service.DbOfferService;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/v1/offer")
+@RequiredArgsConstructor
 public class OfferController {
     private DbOfferService service;
     private OfferMapper mapper;

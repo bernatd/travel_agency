@@ -1,5 +1,6 @@
 package pl.bernatd.travel_agency.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,12 +11,13 @@ import pl.bernatd.travel_agency.mapper.TravellerMapper;
 import pl.bernatd.travel_agency.service.DbTravellerService;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/v1/traveller")
+@RequiredArgsConstructor
 public class TravelerController {
-    private DbTravellerService service;
-    private TravellerMapper mapper;
+    private final DbTravellerService service;
+    private final TravellerMapper mapper;
 
     @GetMapping
     public ResponseEntity<List<TravellerDto>> getAllTravellers() {

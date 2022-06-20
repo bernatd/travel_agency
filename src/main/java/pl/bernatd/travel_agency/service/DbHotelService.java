@@ -1,6 +1,7 @@
 package pl.bernatd.travel_agency.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.bernatd.travel_agency.domain.Hotel;
 import pl.bernatd.travel_agency.exceptions.HotelNotFoundException;
@@ -11,6 +12,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class DbHotelService {
+    @Autowired
     private HotelRepository repository;
 
     public List<Hotel> getAllHotelList() {
